@@ -139,7 +139,7 @@ int main(int argc, char *argv[]){
         printImageMeta(&spec);
         printf("AVX time: %lf ms\n", diffclock(end_avx, begin_avx));
 
-        FILE *fp_avx = fopen("/Users/dejvid/Desktop/fractal_AVX.png", "wb");
+        FILE *fp_avx = fopen("fractal_AVX.png", "wb");
         fprintf(fp_avx, "P6\n%d %d\n%d\n", spec.width, spec.height, spec.depth - 1);
         fwrite(image_avx, spec.width * spec.height, 3, fp_avx);
         free(image_avx);
@@ -158,7 +158,7 @@ int main(int argc, char *argv[]){
         printImageMeta(&spec);
         printf("SSE time: %lf ms\n", diffclock(end_sse, begin_sse));
 
-        FILE *fp_sse = fopen("/Users/dejvid/Desktop/fractal_SSE.png", "wb");
+        FILE *fp_sse = fopen("fractal_SSE.png", "wb");
         fprintf(fp_sse, "P6\n%d %d\n%d\n", spec.width, spec.height, spec.depth - 1);
         fwrite(image_sse, spec.width * spec.height, 3, fp_sse);
         free(image_sse);
@@ -176,7 +176,7 @@ int main(int argc, char *argv[]){
         printImageMeta(&spec);
         printf("Basic time: %lf ms\n", diffclock(end,begin));
 
-        FILE *fp = fopen("/Users/dejvid/Desktop/fractal_Basic.png", "wb");
+        FILE *fp = fopen("fractal_Basic.png", "wb");
         fprintf(fp, "P6\n%d %d\n%d\n", spec.width, spec.height, spec.depth - 1);
         fwrite(image, spec.width * spec.height, 3, fp);
         free(image);

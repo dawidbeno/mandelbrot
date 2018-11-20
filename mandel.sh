@@ -1,6 +1,5 @@
 #! /bin/bash
 
-# Hellou
 # Vypise sposob spustania ak nie je zadany ziaden pripinac
 if [ $# -eq 0 ]; then
 	echo "	$0 [-h]"
