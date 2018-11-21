@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB26B1A8219441D000810502 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB26B1A7219441D000810502 /* main.cpp */; };
+		ABC2702821A5D6A700455BDB /* mandel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABC2702721A5D6A700455BDB /* mandel.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		AB26B1A2219441D000810502 /* CopyFiles */ = {
+		ABC2702221A5D6A700455BDB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB26B1A4219441D000810502 /* mandelbrot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mandelbrot; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB26B1A7219441D000810502 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ABC2702421A5D6A700455BDB /* mandel_aps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mandel_aps; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABC2702721A5D6A700455BDB /* mandel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mandel.cpp; sourceTree = "<group>"; };
+		ABC2702E21A5D6F300455BDB /* mandel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mandel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AB26B1A1219441D000810502 /* Frameworks */ = {
+		ABC2702121A5D6A700455BDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,94 +39,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AB26B19B219441D000810502 = {
+		ABC2701B21A5D6A700455BDB = {
 			isa = PBXGroup;
 			children = (
-				AB26B1A6219441D000810502 /* mandelbrot */,
-				AB26B1A5219441D000810502 /* Products */,
+				ABC2702621A5D6A700455BDB /* mandel_aps */,
+				ABC2702521A5D6A700455BDB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AB26B1A5219441D000810502 /* Products */ = {
+		ABC2702521A5D6A700455BDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB26B1A4219441D000810502 /* mandelbrot */,
+				ABC2702421A5D6A700455BDB /* mandel_aps */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AB26B1A6219441D000810502 /* mandelbrot */ = {
+		ABC2702621A5D6A700455BDB /* mandel_aps */ = {
 			isa = PBXGroup;
 			children = (
-				AB26B1A7219441D000810502 /* main.cpp */,
+				ABC2702721A5D6A700455BDB /* mandel.cpp */,
+				ABC2702E21A5D6F300455BDB /* mandel.h */,
 			);
-			path = mandelbrot;
+			path = mandel_aps;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AB26B1A3219441D000810502 /* mandelbrot */ = {
+		ABC2702321A5D6A700455BDB /* mandel_aps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AB26B1AB219441D000810502 /* Build configuration list for PBXNativeTarget "mandelbrot" */;
+			buildConfigurationList = ABC2702B21A5D6A700455BDB /* Build configuration list for PBXNativeTarget "mandel_aps" */;
 			buildPhases = (
-				AB26B1A0219441D000810502 /* Sources */,
-				AB26B1A1219441D000810502 /* Frameworks */,
-				AB26B1A2219441D000810502 /* CopyFiles */,
+				ABC2702021A5D6A700455BDB /* Sources */,
+				ABC2702121A5D6A700455BDB /* Frameworks */,
+				ABC2702221A5D6A700455BDB /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = mandelbrot;
-			productName = mandelbrot;
-			productReference = AB26B1A4219441D000810502 /* mandelbrot */;
+			name = mandel_aps;
+			productName = mandel_aps;
+			productReference = ABC2702421A5D6A700455BDB /* mandel_aps */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AB26B19C219441D000810502 /* Project object */ = {
+		ABC2701C21A5D6A700455BDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Dávid Beňo";
 				TargetAttributes = {
-					AB26B1A3219441D000810502 = {
+					ABC2702321A5D6A700455BDB = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
-			buildConfigurationList = AB26B19F219441D000810502 /* Build configuration list for PBXProject "mandelbrot" */;
+			buildConfigurationList = ABC2701F21A5D6A700455BDB /* Build configuration list for PBXProject "mandel_aps" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = AB26B19B219441D000810502;
-			productRefGroup = AB26B1A5219441D000810502 /* Products */;
+			mainGroup = ABC2701B21A5D6A700455BDB;
+			productRefGroup = ABC2702521A5D6A700455BDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AB26B1A3219441D000810502 /* mandelbrot */,
+				ABC2702321A5D6A700455BDB /* mandel_aps */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		AB26B1A0219441D000810502 /* Sources */ = {
+		ABC2702021A5D6A700455BDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB26B1A8219441D000810502 /* main.cpp in Sources */,
+				ABC2702821A5D6A700455BDB /* mandel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		AB26B1A9219441D000810502 /* Debug */ = {
+		ABC2702921A5D6A700455BDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -184,7 +186,7 @@
 			};
 			name = Debug;
 		};
-		AB26B1AA219441D000810502 /* Release */ = {
+		ABC2702A21A5D6A700455BDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -236,28 +238,26 @@
 			};
 			name = Release;
 		};
-		AB26B1AC219441D000810502 /* Debug */ = {
+		ABC2702C21A5D6A700455BDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				GCC_VERSION = "";
 				"OTHER_CFLAGS[arch=*]" = (
-					"-mavx",
 					"-msse2",
+					"-mavx",
 				);
 				"OTHER_CPLUSPLUSFLAGS[arch=*]" = (
-					"-mavx",
 					"-msse2",
+					"-mavx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		AB26B1AD219441D000810502 /* Release */ = {
+		ABC2702D21A5D6A700455BDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -265,25 +265,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AB26B19F219441D000810502 /* Build configuration list for PBXProject "mandelbrot" */ = {
+		ABC2701F21A5D6A700455BDB /* Build configuration list for PBXProject "mandel_aps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB26B1A9219441D000810502 /* Debug */,
-				AB26B1AA219441D000810502 /* Release */,
+				ABC2702921A5D6A700455BDB /* Debug */,
+				ABC2702A21A5D6A700455BDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AB26B1AB219441D000810502 /* Build configuration list for PBXNativeTarget "mandelbrot" */ = {
+		ABC2702B21A5D6A700455BDB /* Build configuration list for PBXNativeTarget "mandel_aps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AB26B1AC219441D000810502 /* Debug */,
-				AB26B1AD219441D000810502 /* Release */,
+				ABC2702C21A5D6A700455BDB /* Debug */,
+				ABC2702D21A5D6A700455BDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AB26B19C219441D000810502 /* Project object */;
+	rootObject = ABC2701C21A5D6A700455BDB /* Project object */;
 }
