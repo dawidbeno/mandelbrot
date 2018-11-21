@@ -14,24 +14,22 @@ if [ "$1" = "-h" ]; then
 	echo "	$0 - Mandelbrot fractal"
 	echo ""
 	echo "SYNOPSIS"
-	echo "	$0 [-h]"
+	echo "	$0 [-h] [-B] [-S] [-A] [-test]"
 	echo ""
 	echo "DESCRIPTION"
 	echo "	Program vykresluje Mandelbrotov fraktál do obrázku."
 	echo ""
 	echo "	Options:"
 	echo "		-h 	Vypise help"
-	echo " 		-B 	Bez pouzitia instrukcii"
-	echo " 		-S 	Pouzitie SSE instrukcii"
-	echo "		-A 	Pouzitie AVX instrukcii"
+	echo " 		-B 	Vykreslenie obrazku bez pouzitia instrukcii"
+	echo " 		-S 	Vykreslenie obrazku s pouzitim SSE instrukcii"
+	echo "		-A 	Vykreslenie obrazku s pouzitim AVX instrukcii"
+	echo "		-T 	Vykona testovanie"
 	echo ""
 
 	exit 0
 fi
 
-BASIC=0
-SSE=0
-AVX=0
 
 TEST=0
 
@@ -43,19 +41,29 @@ while [ $# -gt 0 ]; do
 	fi
 	if [ "$1" = "-A" ]; then
 		echo "Run mandelbrot with AVX"
-		AVX=1
+		./mandelEXE -A -w
+		echo $?
 	fi
 	if [ "$1" = "-S" ]; then
 		echo "Run mandelbrot with SSE"
-		SSE=1
+		./mandelEXE -S -w
+		echo $?
 	fi
 	if [ "$1" = "-B" ]; then
 		echo "Run mandelbrot Basic"
-		BASIC=1
-		bash -c "./mandelEXE -B"
+		./mandelEXE -B -w
+		echo $?
 	fi
 	shift
 done
+
+
+
+
+
+
+
+
 
 
 

@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  mandel_aps
-//
-//  Created by Dávid Beňo on 21/11/2018.
-//  Copyright © 2018 Dávid Beňo. All rights reserved.
-//
-
 
 #include <stdio.h>
 #include <stdlib.h>

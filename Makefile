@@ -1,4 +1,4 @@
-CFLAGS = -std=c99 -msse2 -mavx
+CFLAGS = -msse2 -mavx
 
 mandelEXE : mandel.c mandel_avx.o mandel_sse2.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
