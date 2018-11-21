@@ -56,8 +56,8 @@ double diffclock(double clock1,double clock2)
 
 void printImageMeta(const struct spec *s){
     printf("Image metadata:\n");
-    print("Width: %d\n", s->width);
-    print("Height: %d\n", s->height);
+    printf("Width: %d\n", s->width);
+    printf("Height: %d\n", s->height);
 }
 
 int main(int argc, char *argv[]){

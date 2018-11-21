@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mandelbrot/main.cpp"
-            timestampString = "563832391.028134"
+            timestampString = "564514354.637606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "241"
@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mandelbrot/main.cpp"
-            timestampString = "563832391.028543"
+            timestampString = "564514354.639129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "mandel_sse2(Pixel **img, const struct spec *s)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mandelbrot/main.cpp"
-            timestampString = "563832391.028811"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "mandel_sse2(Pixel **img, const struct spec *s)"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "main(int argc, char * argv[])"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
