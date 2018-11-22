@@ -47,11 +47,11 @@ void mandel_basic(unsigned char *image, const struct spec *s)
 }
 
 
-double diffclock(double clock1,double clock2)
+int diffclock(double clock1,double clock2)
 {
     double diffticks=clock1-clock2;
     double diffms=(diffticks*1000)/CLOCKS_PER_SEC;
-    return diffms;
+    return (int)diffms;
 }
 
 void printImageMeta(const struct spec *s){
@@ -63,8 +63,8 @@ void printImageMeta(const struct spec *s){
 int main(int argc, char *argv[]){
     /* Config */
     struct spec spec = {
-        .width = 1024,
-        .height = 1024,
+        .width = 3000,
+        .height = 3000,
         .depth = 256,
         .xlim = {-2.5, 1.5},
         .ylim = {-1.5, 1.5},
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
             option++;
             continue;
         }
-        if(!strcmp(argv[option], "-test")){
+        if(!strcmp(argv[option], "-T")){
             test = 1;
             option++;
             continue;
@@ -137,14 +137,14 @@ int main(int argc, char *argv[]){
 
     /* AVX */
     if(use_avx){
-        unsigned char *image_avx = malloc(spec.width * spec.height * 3);
+        unsigned char *image_avx = (unsigned char *)malloc(spec.width * spec.height * 3);
         clock_t begin_avx=clock();
         mandel_avx(image_avx, &spec);
         clock_t end_avx=clock();
 
         //printImageMeta(&spec);
-        double time_avx = diffclock(end_avx, begin_avx);
-        printf("C OUTPUT: AVX time: %lf ms\n", time_avx);
+        int time_avx = diffclock(end_avx, begin_avx);
+        printf("C OUTPUT: AVX time: %d ms\n", time_avx);
 
         if(store_img){
             FILE *fp_avx = fopen("fractal_AVX.png", "wb");
@@ -154,21 +154,21 @@ int main(int argc, char *argv[]){
         }   
         free(image_avx);
 
-        return (int)time_avx;
+        return time_avx;
     }
     
 
 
     /* SSE */
     if(use_sse){
-        unsigned char *image_sse = malloc(spec.width * spec.height * 3);
+        unsigned char *image_sse = (unsigned char *)malloc(spec.width * spec.height * 3);
         clock_t begin_sse=clock();
         mandel_sse2(image_sse, &spec);
         clock_t end_sse=clock();
 
         //printImageMeta(&spec);
-        double time_sse = diffclock(end_sse, begin_sse);
-        printf("C OUTPUT: SSE time: %lf ms\n", time_sse);
+        int time_sse = diffclock(end_sse, begin_sse);
+        printf("C OUTPUT: SSE time: %d ms\n", time_sse);
 
         if(store_img){
             FILE *fp_sse = fopen("fractal_SSE.png", "wb");
@@ -178,20 +178,20 @@ int main(int argc, char *argv[]){
         }
         free(image_sse);
 
-        return (int)time_sse;
+        return time_sse;
     }
     
 
     /* Basic */
     if(use_basic){
-        unsigned char *image = malloc(spec.width * spec.height * 3);
+        unsigned char *image = (unsigned char *)malloc(spec.width * spec.height * 3);
         clock_t begin=clock();
         mandel_basic(image, &spec);
         clock_t end=clock();
 
         //printImageMeta(&spec);
-        double time_basic = diffclock(end,begin);
-        printf("C OUTPUT: Basic time: %lf ms\n", time_basic);
+        int time_basic = diffclock(end,begin);
+        printf("C OUTPUT: Basic time: %d ms\n", time_basic);
 
         if(store_img){
             FILE *fp = fopen("fractal_Basic.png", "wb");
@@ -201,7 +201,7 @@ int main(int argc, char *argv[]){
         }
         free(image);
 
-        return (int)time_basic;
+        return time_basic;
     }
     
 

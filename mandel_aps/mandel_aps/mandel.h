@@ -8,7 +8,7 @@
 
 #ifndef mandel_h
 #define mandel_h
-
+#pragma once
 
 struct spec {
     /* Image Specification */

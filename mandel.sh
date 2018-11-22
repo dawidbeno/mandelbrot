@@ -37,22 +37,19 @@ TEST=0
 while [ $# -gt 0 ]; do
 	if [ "$1" = "-test" ]; then
 		echo "Run test"
-		TEST=1
+		./mandelEXE -T
 	fi
 	if [ "$1" = "-A" ]; then
 		echo "Run mandelbrot with AVX"
 		./mandelEXE -A -w
-		echo $?
 	fi
 	if [ "$1" = "-S" ]; then
 		echo "Run mandelbrot with SSE"
 		./mandelEXE -S -w
-		echo $?
 	fi
 	if [ "$1" = "-B" ]; then
 		echo "Run mandelbrot Basic"
 		./mandelEXE -B -w
-		echo $?
 	fi
 	shift
 done
