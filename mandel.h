@@ -13,7 +13,6 @@ typedef struct imgspec {
 
 /* KONSTANTY */
 #define TEST_LENGHT 10
-#define IMG_PATH_AVX "/Users/dejvid/Codes/SKOLA/APS/mandelbrot_zadanie/fractal_AVX.png"
-#define IMG_PATH_SSE "/Users/dejvid/Codes/SKOLA/APS/mandelbrot_zadanie/fractal_SSE.png"
-#define IMG_PATH_BASIC "/Users/dejvid/Codes/SKOLA/APS/mandelbrot_zadanie/fractal_Basic.png"
-
+#define IMG_PATH_AVX "fractal_AVX.png"
+#define IMG_PATH_SSE "fractal_SSE.png"
+#define IMG_PATH_BASIC "fractal_Basic.png"

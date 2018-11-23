@@ -47,7 +47,7 @@ void mandel_basic(unsigned char *image,  struct imgspec *s)
 }
 
 
-
+/* UTILS */
 int diffclock(double clock1,double clock2)
 {
     double diffticks=clock1-clock2;
@@ -64,16 +64,9 @@ int average_time(int *arr, int size){
     return result;
 }
 
-void printImageMeta(IMGSPEC *s){
-    printf("Image metadata:\n");
-    printf("Width: %d\n", s->width);
-    printf("Height: %d\n", s->height);
-}
 
-
-
-
-int run_mandel_avx(IMGSPEC *spec, int store_img){
+/* run functions */
+int run_mandel_avx(struct imgspec *spec, int store_img){
     unsigned char *image_avx = (unsigned char *)malloc(spec->width * spec->height * 3);
     clock_t begin_avx=clock();
     mandel_avx(image_avx, spec);
@@ -93,7 +86,7 @@ int run_mandel_avx(IMGSPEC *spec, int store_img){
 
 
 
-int run_mandel_sse(IMGSPEC *spec, int store_img){
+int run_mandel_sse(struct imgspec *spec, int store_img){
     unsigned char *image_sse = (unsigned char *)malloc(spec->width * spec->height * 3);
     clock_t begin_sse=clock();
     mandel_sse2(image_sse, spec);
@@ -114,7 +107,7 @@ int run_mandel_sse(IMGSPEC *spec, int store_img){
 
 
 
-int run_mandel_basic(IMGSPEC *spec, int store_img){
+int run_mandel_basic(struct imgspec *spec, int store_img){
     unsigned char *image = (unsigned char *)malloc(spec->width * spec->height * 3);
     clock_t begin=clock();
     mandel_basic(image, spec);
@@ -134,7 +127,7 @@ int run_mandel_basic(IMGSPEC *spec, int store_img){
 }
 
 
-void run_test(IMGSPEC *spec, int size){
+void run_test(struct imgspec *spec, int size){
     int avg_avx_time = 0;
     int avg_sse_time = 0;
     int avg_basic_time = 0;
@@ -167,24 +160,21 @@ void run_test(IMGSPEC *spec, int size){
     free(arr_basic);
     
     /* Vypis statistiky */
-    printf("Priemerny cas vykreslenia obrazku %dx%d pixelov:\n", size, size);
+    printf("\nPriemerny cas vykreslenia obrazku %d x %d pixelov:\n", size, size);
     printf("    Basic: %dms\n", avg_basic_time);
-    printf("    SSE: %d\n", avg_sse_time);
-    printf("    AVX: %d\n", avg_avx_time);
-    printf("Zrychlenie pri pouziti specialnych instrukcii:");
-    printf("    SSE oproti Basic: %dx zrychlenie\n", (avg_basic_time/avg_sse_time));
-    printf("    AVX oproti Basic: %dx zrychlenie\n", (avg_basic_time/avg_avx_time));
-    printf("    AVX oproti SSE: %dx zrychlenie\n\n", (avg_sse_time/avg_avx_time));
+    printf("    SSE: %dms, zrychlenie %.2fx\n", avg_sse_time, ((float)avg_basic_time/(float)avg_sse_time));
+    printf("    AVX: %dms, zrychlenie %.2fx\n", avg_avx_time, ((float)avg_basic_time/(float)avg_avx_time));
+ 
 }
 
 
-
+/* MAIN */
 int main(int argc, const char * argv[]) {
     
     /* Config */
     IMGSPEC spec = {
-        .width = 3000,
-        .height = 3000,
+        .width = 1024,
+        .height = 1024,
         .depth = 256,
         .xlim = {-2.5, 1.5},
         .ylim = {-1.5, 1.5},
@@ -246,6 +236,7 @@ int main(int argc, const char * argv[]) {
     
     /* TEST */
     if(test){
+        printf("Nasledovne priemerne casy su vypocitane z %d pokusov vykreslenia obrazku...\n", TEST_LENGHT);
         /* test 256 */
         run_test(&spec, 256);
         
@@ -272,19 +263,25 @@ int main(int argc, const char * argv[]) {
     /* AVX */
     if(use_avx){
         int time_avx = run_mandel_avx(&spec, store_img);
-        printf("C OUTPUT: AVX time: %d ms\n", time_avx);
+        printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
+        printf("AVX cas: %d ms\n", time_avx);
+        (store_img) ? printf("Ulozeny: %s\n",IMG_PATH_AVX) : printf("");
     }
     
     /* SSE */
     if(use_sse){
         int time_sse = run_mandel_sse(&spec, store_img);
-        printf("C OUTPUT: SSE time: %d ms\n", time_sse);
+        printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
+        printf("SSE cas: %d ms\n", time_sse);
+        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_SSE) : printf("");
     }
     
     /* Basic */
     if(use_basic){
         int time_basic = run_mandel_basic(&spec, store_img);
-        printf("C OUTPUT: Basic time: %d ms\n", time_basic);
+        printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
+        printf("Basic cas: %d ms\n", time_basic);
+        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_BASIC) : printf("");
     }
     
     return 0;
