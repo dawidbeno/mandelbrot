@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Ofast
+CFLAGS = -Wall -Wextra -O3
 
 mandelEXE : mandel.c mandel_avx.o mandel_sse2.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)

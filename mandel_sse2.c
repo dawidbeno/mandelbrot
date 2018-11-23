@@ -2,7 +2,7 @@
 #include "mandel.h"
 
 void
-mandel_sse2(unsigned char *image, const struct spec *s)
+mandel_sse2(unsigned char *image,  struct imgspec *s)
 {
     __m128 xmin = _mm_set_ps1(s->xlim[0]);
     __m128 ymin = _mm_set_ps1(s->ylim[0]);

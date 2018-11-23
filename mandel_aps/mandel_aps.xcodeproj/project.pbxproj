@@ -242,13 +242,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				"OTHER_CFLAGS[arch=*]" = (
-					"-msse2",
-					"-mavx",
-				);
+				C_Flags = "";
 				"OTHER_CPLUSPLUSFLAGS[arch=*]" = (
-					"-msse2",
+					"-Wall",
+					"-Wextra",
+					"-O3",
 					"-mavx",
+					"-msse2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -258,6 +258,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				C_Flags = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

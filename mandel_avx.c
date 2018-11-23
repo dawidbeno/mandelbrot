@@ -2,7 +2,7 @@
 #include "mandel.h"
 
 void
-mandel_avx(unsigned char *image, const struct spec *s)
+mandel_avx(unsigned char *image,  struct imgspec *s)
 {
     __m256 xmin = _mm256_set1_ps(s->xlim[0]);
     __m256 ymin = _mm256_set1_ps(s->ylim[0]);
