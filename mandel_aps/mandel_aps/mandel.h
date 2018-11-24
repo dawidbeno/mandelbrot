@@ -27,5 +27,11 @@ typedef struct imgspec {
 #define IMG_PATH_SSE "/Users/dejvid/fractal_SSE.png"
 #define IMG_PATH_BASIC "/Users/dejvid/fractal_Basic.png"
 
+#define TSIZE1 500
+#define TSIZE2 1000
+#define TSIZE3 2000
+#define TSIZE4 3000
+#define TSIZE5 4000
+
 
 #endif /* mandel_h */

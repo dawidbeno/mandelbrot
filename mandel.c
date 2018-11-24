@@ -128,7 +128,9 @@ int run_mandel_basic(struct imgspec *spec, int store_img){
 }
 
 
-void run_test(struct imgspec *spec, int size){
+
+
+void run_test(struct imgspec *spec, int size, int storeimg){
     int avg_avx_time = 0;
     int avg_sse_time = 0;
     int avg_basic_time = 0;
@@ -139,7 +141,7 @@ void run_test(struct imgspec *spec, int size){
     /* AVX */
     int *arr_avx = (int*)malloc(TEST_LENGHT*sizeof(int));
     for(int i=0; i<TEST_LENGHT; i++){
-        arr_avx[i] = run_mandel_avx(spec, (i < TEST_LENGHT -1) ? 0 : 1);
+        arr_avx[i] = run_mandel_avx(spec, ((i == TEST_LENGHT -1) && (storeimg == 1) && (size == TSIZE5)) ? 1 : 0);
     }
     avg_avx_time = average_time(arr_avx, TEST_LENGHT);
     free(arr_avx);
@@ -147,7 +149,7 @@ void run_test(struct imgspec *spec, int size){
     /* SSE */
     int *arr_sse = (int*)malloc(TEST_LENGHT*sizeof(int));
     for(int i=0; i<TEST_LENGHT; i++){
-        arr_sse[i] = run_mandel_sse(spec, (i < TEST_LENGHT -1) ? 0 : 1);
+        arr_sse[i] = run_mandel_sse(spec, ((i == TEST_LENGHT -1) && (storeimg == 1) && (size == TSIZE5)) ? 1 : 0);
     }
     avg_sse_time = average_time(arr_sse, TEST_LENGHT);
     free(arr_sse);
@@ -155,7 +157,7 @@ void run_test(struct imgspec *spec, int size){
     /* Basic */
     int *arr_basic = (int*)malloc(TEST_LENGHT*sizeof(int));
     for(int i=0; i<TEST_LENGHT; i++){
-        arr_basic[i] = run_mandel_basic(spec, (i < TEST_LENGHT -1) ? 0 : 1);
+        arr_basic[i] = run_mandel_basic(spec, ((i == TEST_LENGHT -1) && (storeimg == 1) && (size == TSIZE5)) ? 1 : 0);
     }
     avg_basic_time = average_time(arr_basic, TEST_LENGHT);
     free(arr_basic);
@@ -238,26 +240,20 @@ int main(int argc, const char * argv[]) {
     /* TEST */
     if(test){
         printf("Nasledovne priemerne casy su vypocitane z %d pokusov vykreslenia obrazku...\n", TEST_LENGHT);
-        /* test 256 */
-        run_test(&spec, 256);
-        
-        /* test 512 */
-        run_test(&spec, 512);
+        /* test 500 */
+        run_test(&spec, TSIZE1, store_img);
         
         /* test 1000 */
-        run_test(&spec, 1000);
+        run_test(&spec, TSIZE2, store_img);
         
         /* test 2000 */
-        run_test(&spec, 2000);
+        run_test(&spec, TSIZE3, store_img);
         
         /* test 3000 */
-        run_test(&spec, 3000);
+        run_test(&spec, TSIZE4, store_img);
         
         /* test 4000 */
-        run_test(&spec, 4000);
-        
-        /* test 6000 */
-        run_test(&spec, 6000);
+        run_test(&spec, TSIZE5, store_img);
         
         return 0;
     }
