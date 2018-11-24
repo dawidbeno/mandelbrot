@@ -13,10 +13,10 @@ Program s spúšťa pomoocu Bash skriptu:
 ./mandel [-h] [-B] [-S] [-A] [-t] [-w] [-xy num num] [-c]
 ```
 ### Prepínače
-- -h
-	Program vypíše help.
+- -h\n
+	\tProgram vypíše help.
 - -B
-	Vykreslenie obrázku bez použitia inštrukcií (Basic).
+	-Vykreslenie obrázku bez použitia inštrukcií (Basic).
 - -S
 	Vykreslenie obrázku s použitím SSE inštrukcií.
 - -A
