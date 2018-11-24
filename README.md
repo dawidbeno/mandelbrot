@@ -13,22 +13,25 @@ Program s spúšťa pomoocu Bash skriptu:
 ./mandel [-h] [-B] [-S] [-A] [-t] [-w] [-xy num num] [-c]
 ```
 ### Prepínače
-- -h 
+- **-h** 
 	* Program vypíše help.
-- -B
+- **-B**
 	* Vykreslenie obrázku bez použitia inštrukcií (Basic).
-- -S
+- **-S**
 	* Vykreslenie obrázku s použitím SSE inštrukcií.
-- -A
+- **-A**
 	* Vykreslenie obrázku s použitám AVX inštrukcií.
-- -t
+- **-t**
 	* Vykoná testovanie, ktoré vypíše priemerný čas vykreslenia obrázkov bez použitia špeciálnych inštrukcii, s SSE a s AVX. Priemerný čas sa vypočíta z časov 10 vykreslení obrázka pre každý typ programu. Testovaie sa vykonáva pre viacero veľkostí obrázkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
-- -w
+- **-w**
 	* Uloží obrázok do priečinku s programom. Názov obrázku je fractal_[Basic / SSE / AVX].png. Ak je prepínac použitý v kombinacii s -T, tak uloží len posledný (a teda najväčší) obrázok z testovania."
-- -xy num num
-	* Šírka a výška obrázku, ktorý sa vykreslí.
+- **-xy num num**
+	* Šírka a výška obrázku, ktorý sa vykreslí. Za prepínačom **-xy** musia nasledovať dve čísla oddelené medzerou.
 - -c
 	* Vyčistí priečinok - vymazanie vykreslených obrázkov a všetkých skompilovaných súborov.
+
+## Xcode project
+V priečinku **xcode_mandel_aps** je umiestnený projekt pre prostredie Xcode na macos.
 
 ## Záver
 Tento projekt bol vytvorený ako školský projekt na FIIT STU v rámci predmetu Architektúra počítačových systémov.
