@@ -18,15 +18,18 @@ Program s spúšťa pomoocu Bash skriptu:
 - -B
 	* Vykreslenie obrázku bez použitia inštrukcií (Basic).
 - -S
-	Vykreslenie obrázku s použitím SSE inštrukcií.
+	* Vykreslenie obrázku s použitím SSE inštrukcií.
 - -A
-	Vykreslenie obrázku s použitám AVX inštrukcií.
+	* Vykreslenie obrázku s použitám AVX inštrukcií.
 - -t
-	Vykoná testovanie, ktoré vypíše priemerný čas vykreslenia obrázkov bez použitia špeciálnych inštrukcii, s SSE a s AVX. Priemerný čas sa vypočíta z časov 10 vykreslení obrázka pre každý typ programu. Testovaie sa vykonáva pre viacero veľkostí obrázkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
+	* Vykoná testovanie, ktoré vypíše priemerný čas vykreslenia obrázkov bez použitia špeciálnych inštrukcii, s SSE a s AVX. Priemerný čas sa vypočíta z časov 10 vykreslení obrázka pre každý typ programu. Testovaie sa vykonáva pre viacero veľkostí obrázkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
 - -w
-	Uloží obrázok do priečinku s programom. Názov obrázku je fractal_[Basic / SSE / AVX].png. Ak je prepínac použitý v kombinacii s -T, tak uloží len posledný (a teda najväčší) obrázok z testovania."
+	* Uloží obrázok do priečinku s programom. Názov obrázku je fractal_[Basic / SSE / AVX].png. Ak je prepínac použitý v kombinacii s -T, tak uloží len posledný (a teda najväčší) obrázok z testovania."
 - -xy num num
-	Šírka a výška obrázku, ktorý sa vykreslí.
+	* Šírka a výška obrázku, ktorý sa vykreslí.
 - -c
-	Vyčistí priečinok - vymazanie vykreslených obrázkov a všetkých skompilovaných súborov.
+	* Vyčistí priečinok - vymazanie vykreslených obrázkov a všetkých skompilovaných súborov.
+
+## Záver
+Tento projekt bol vytvorený ako školský projekt na FIIT STU v rámci predmetu Architektúra počítačových systémov.
 
