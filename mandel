@@ -1,0 +1,78 @@
+#! /bin/bash
+
+# Vypise sposob spustania ak nie je zadany ziaden pripinac
+if [ $# -eq 0 ]; then
+	echo "	$0 [-h]"
+	exit 0
+fi
+
+
+# HELP
+if [ "$1" = "-h" ]; then
+	echo ""
+	echo "NAME"
+	echo "	$0 - Mandelbrot fractal"
+	echo ""
+	echo "SYNOPSIS"
+	echo "	$0 [-h] [-B] [-S] [-A] [-t] [-w] [-xy num num] [-c]"
+	echo ""
+	echo "DESCRIPTION"
+	echo "	Program vykresluje Mandelbrotov fraktál do obrázku."
+	echo ""
+	echo "	Options:"
+	echo "		-h 	Vypise help"
+	echo " 		-B 	Vykreslenie obrazku bez pouzitia instrukcii"
+	echo " 		-S 	Vykreslenie obrazku s pouzitim SSE instrukcii"
+	echo "		-A 	Vykreslenie obrazku s pouzitim AVX instrukcii"
+	echo "		-T 	Vykona testovanie"
+	echo "		-xy num num Zadaj sirku a vysku obrazku"
+	echo "		-c 	vycisti priecinok"
+	echo ""
+
+	exit 0
+fi
+
+
+test=0
+options=""
+
+# Parsovanie prepinacov
+while [ $# -gt 0 ]; do
+	if [ "$1" = "-c" ]; then
+		rm mandelEXE
+		rm *\.o
+		rm fractal_*
+		exit 0
+	fi
+	if [ "$1" = "-t" ]; then
+		options="$options -T"
+		test=1
+	fi
+	if [ "$1" = "-A" ]; then
+		options="$options -A"
+	fi
+	if [ "$1" = "-S" ]; then
+		options="$options -S"
+	fi
+	if [ "$1" = "-B" ]; then
+		options="$options -B"
+	fi
+	if [ "$1" = "-w" ]; then
+		options="$options -w"
+	fi
+	if [ "$1" = "-xy" ]; then
+		if [ "$2" -gt 0 ] && [ "$3" -gt 0 ]; then
+			options="$options -xy"
+			shift
+			options="$options $1"
+			shift
+			options="$options $1"
+		else
+			echo "Zle zadane prepinace za -xy"
+		fi
+	fi
+	shift
+done
+
+./mandelEXE $options
+

@@ -352,17 +352,20 @@ int main(int argc, const char * argv[]) {
         /* test 512 */
         run_test(&spec, 512);
         
-        /* test 1024 */
-        run_test(&spec, 1024);
+        /* test 1000 */
+        run_test(&spec, 1000);
         
-        /* test 2048 */
-        run_test(&spec, 2048);
+        /* test 2000 */
+        run_test(&spec, 2000);
+        
+        /* test 3000 */
+        run_test(&spec, 3000);
         
         /* test 4000 */
         run_test(&spec, 4000);
         
-        /* test 8000 */
-        run_test(&spec, 8000);
+        /* test 6000 */
+        run_test(&spec, 6000);
         
         return 0;
     }
