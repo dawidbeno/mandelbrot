@@ -6,6 +6,10 @@ Program nevyžaduje žiadnu špeciálnu inštaláciu, iba stiahnutie kódov a ic
 ```
 make
 ```
+alebo príkazom:
+```
+gcc -Wall -Wextra -O3 -msse2 -mavx mandel.c mandel_sse2.c mandel_avx.c -o mandelEXE
+```
 
 ## Spustenie
 Program s spúšťa pomoocu Bash skriptu:
