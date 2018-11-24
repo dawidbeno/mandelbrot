@@ -18,7 +18,7 @@ if [ "$1" = "-h" ]; then
 	echo ""
 	echo "DESCRIPTION"
 	echo "	Program vykresluje Mandelbrotov fraktál do obrázku. Pouzivatel si moze vybrat sposob vykreslenia obrazku - pouzitie specialnych instrukcii"
-	echo "	a tiez aj velkost obrazku, ktory sa vykresli. Okrem toho je mozne spustit testovanie, ktore zmeria rychlost pri vykreslovania roznych velkosti"
+	echo "	a tiez aj velkost obrazku, ktory sa vykresli. Okrem toho je mozne spustit testovanie, ktore zmeria rychlost pri vykreslovani roznych velkosti"
 	echo "	obrazkov za pouzitia specialnych instrukcii a bez nich."
 	echo ""
 	echo "	Prepinace:"
