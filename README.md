@@ -1,2 +1,10 @@
-# mandelbrot
-Mandelbrot fractal generated with CPU extensions SSE and AVX
+# Mandelbrot 
+Program vykresľuje Mandelbrotov fraktál s použitím špeciálnych inštrukcii procesora pre značné zvýšenie rýchlosti vykresľovania.
+
+## Inštalácia
+Program nevyžaduje žiadnu špeciálnu inštaláciu, iba stiahnutie kódov a ich skompilovanie príkazom:
+'''
+make
+'''
+
+## Spustenie
