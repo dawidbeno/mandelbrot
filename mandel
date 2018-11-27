@@ -30,7 +30,7 @@ if [ "$1" = "-h" ]; then
 	echo "	   Vykreslenie obrazku s pouzitim SSE instrukcii."
 	echo "	-A"
 	echo "	   Vykreslenie obrazku s pouzitim AVX instrukcii."
-	echo "	-T"
+	echo "	-t"
 	echo "	  Vykona testovanie, ktore vypise priemerny cas vykreslenia obrazkov bez pouzitia specianych instrukcii, s SSE a s AVX"
 	echo "	  Priemerny cas sa vypocita z casov 10 vykresleni obrazka pre kazdy typ programu."
 	echo "	  Testovaie sa vykonava pre viacero velkosti obrazkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
@@ -47,7 +47,6 @@ if [ "$1" = "-h" ]; then
 fi
 
 
-test=0
 options=""
 
 # Parsovanie prepinacov
@@ -60,7 +59,6 @@ while [ $# -gt 0 ]; do
 	fi
 	if [ "$1" = "-t" ]; then
 		options="$options -T"
-		test=1
 	fi
 	if [ "$1" = "-A" ]; then
 		options="$options -A"
