@@ -1,0 +1,90 @@
+#! /bin/bash
+
+# Vypise sposob spustania ak nie je zadany ziaden pripinac
+if [ $# -eq 0 ]; then
+	echo "	$0 [-h]"
+	exit 0
+fi
+
+
+# HELP
+if [ "$1" = "-h" ]; then
+	echo ""
+	echo "NAME"
+	echo "	$0 - Mandelbrot fractal"
+	echo ""
+	echo "SYNOPSIS"
+	echo "	$0 [-h] [-B] [-S] [-A] [-t] [-w] [-xy num num] [-c]"
+	echo ""
+	echo "DESCRIPTION"
+	echo "	Program vykresluje Mandelbrotov fraktál do obrázku. Pouzivatel si moze vybrat sposob vykreslenia obrazku - pouzitie specialnych instrukcii"
+	echo "	a tiez aj velkost obrazku, ktory sa vykresli. Okrem toho je mozne spustit testovanie, ktore zmeria rychlost pri vykreslovani roznych velkosti"
+	echo "	obrazkov za pouzitia specialnych instrukcii a bez nich."
+	echo ""
+	echo "	Prepinace:"
+	echo "	-h"
+	echo "	   Vypise help."
+	echo " 	-B"
+	echo "	   Vykreslenie obrazku bez pouzitia instrukcii (Basic)."
+	echo " 	-S"
+	echo "	   Vykreslenie obrazku s pouzitim SSE instrukcii."
+	echo "	-A"
+	echo "	   Vykreslenie obrazku s pouzitim AVX instrukcii."
+	echo "	-t"
+	echo "	  Vykona testovanie, ktore vypise priemerny cas vykreslenia obrazkov bez pouzitia specianych instrukcii, s SSE a s AVX"
+	echo "	  Priemerny cas sa vypocita z casov 10 vykresleni obrazka pre kazdy typ programu."
+	echo "	  Testovaie sa vykonava pre viacero velkosti obrazkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
+	echo "	-w"
+	echo "	  Ulozi obrazok do priecinku s programom. Nazov obrazku je fractal_[Basic / SSE / AVX].png. Ak je prepinac pouzity"
+	echo "	  v kombinacii s -T, tak ulozi len posledny (a teda najvacsi) obrazok z testovania."
+	echo "	-xy num num"
+	echo "	  Sirka a vyska obrazku, ktory sa vykresli."
+	echo "	-c"
+	echo "	  Vycisti priecinok - vymazanie vykreslenych obrazkov a vsetkych skompilovanych suborov."
+	echo ""
+
+	exit 0
+fi
+
+
+options=""
+
+# Parsovanie prepinacov
+while [ $# -gt 0 ]; do
+	if [ "$1" = "-c" ]; then
+		rm mandelEXE
+		rm *\.o
+		rm fractal_*
+		exit 0
+	fi
+	if [ "$1" = "-t" ]; then
+		options="$options -T"
+	fi
+	if [ "$1" = "-A" ]; then
+		options="$options -A"
+	fi
+	if [ "$1" = "-S" ]; then
+		options="$options -S"
+	fi
+	if [ "$1" = "-B" ]; then
+		options="$options -B"
+	fi
+	if [ "$1" = "-w" ]; then
+		options="$options -w"
+	fi
+	if [ "$1" = "-xy" ]; then
+		if [ "$2" -gt 0 ] && [ "$3" -gt 0 ]; then
+			options="$options -xy"
+			shift
+			options="$options $1"
+			shift
+			options="$options $1"
+		else
+			echo "Zle zadane prepinace za -xy"
+		fi
+	fi
+	shift
+done
+
+./mandelEXE $options
+

@@ -24,3 +24,5 @@ typedef struct imgspec {
 #define TSIZE4 3000
 #define TSIZE5 4000
 
+#define DEPTH 256
+#define ITERATIONS 256

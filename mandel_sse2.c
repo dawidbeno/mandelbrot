@@ -24,7 +24,6 @@ mandel_sse2(unsigned char *image,  struct imgspec *s)
             int k = 1;
             __m128 mk = _mm_set_ps1(k);
             while (++k < s->iterations) {
-                /* Compute z1 from z0 */
                 __m128 zr2 = _mm_mul_ps(zr, zr);
                 __m128 zi2 = _mm_mul_ps(zi, zi);
                 __m128 zrzi = _mm_mul_ps(zr, zi);

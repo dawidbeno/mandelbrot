@@ -26,7 +26,6 @@ mandel_avx(unsigned char *image,  struct imgspec *s)
             int k = 1;
             __m256 mk = _mm256_set1_ps(k);
             while (++k < s->iterations) {
-                /* Compute z1 from z0 */
                 __m256 zr2 = _mm256_mul_ps(zr, zr);
                 __m256 zi2 = _mm256_mul_ps(zi, zi);
                 __m256 zrzi = _mm256_mul_ps(zr, zi);

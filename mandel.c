@@ -6,9 +6,60 @@
 #include <string.h>
 #include "mandel.h"
 
-void mandel_basic(unsigned char *image,  struct imgspec *s);
-void mandel_avx(unsigned char *image,  struct imgspec *s);
-void mandel_sse2(unsigned char *image,  struct imgspec *s);
+void mandel_avx(unsigned char *image,  struct imgspec *s){
+    __m256 xmin = _mm256_set1_ps(s->xlim[0]);
+    __m256 ymin = _mm256_set1_ps(s->ylim[0]);
+    __m256 xscale = _mm256_set1_ps((s->xlim[1] - s->xlim[0]) / s->width);
+    __m256 yscale = _mm256_set1_ps((s->ylim[1] - s->ylim[0]) / s->height);
+    __m256 threshold = _mm256_set1_ps(4);
+    __m256 one = _mm256_set1_ps(1);
+    __m256 iter_scale = _mm256_set1_ps(1.0f / s->iterations);
+    __m256 depth_scale = _mm256_set1_ps(s->depth - 1);
+
+
+    for (int y = 0; y < s->height; y++) {
+        for (int x = 0; x < s->width; x += 8) {
+            __m256 mx = _mm256_set_ps(x + 7, x + 6, x + 5, x + 4,
+                                      x + 3, x + 2, x + 1, x + 0);
+            __m256 my = _mm256_set1_ps(y);
+            __m256 cr = _mm256_add_ps(_mm256_mul_ps(mx, xscale), xmin);
+            __m256 ci = _mm256_add_ps(_mm256_mul_ps(my, yscale), ymin);
+            __m256 zr = cr;
+            __m256 zi = ci;
+            int k = 1;
+            __m256 mk = _mm256_set1_ps(k);
+            while (++k < s->iterations) {
+                __m256 zr2 = _mm256_mul_ps(zr, zr);
+                __m256 zi2 = _mm256_mul_ps(zi, zi);
+                __m256 zrzi = _mm256_mul_ps(zr, zi);
+
+                zr = _mm256_add_ps(_mm256_sub_ps(zr2, zi2), cr);
+                zi = _mm256_add_ps(_mm256_add_ps(zrzi, zrzi), ci);
+
+                zr2 = _mm256_mul_ps(zr, zr);
+                zi2 = _mm256_mul_ps(zi, zi);
+                __m256 mag2 = _mm256_add_ps(zr2, zi2);
+                __m256 mask = _mm256_cmp_ps(mag2, threshold, _CMP_LT_OS);
+                mk = _mm256_add_ps(_mm256_and_ps(mask, one), mk);
+
+                if (_mm256_testz_ps(mask, _mm256_set1_ps(-1)))
+                    break;
+            }
+            mk = _mm256_mul_ps(mk, iter_scale);
+            mk = _mm256_sqrt_ps(mk);
+            mk = _mm256_mul_ps(mk, depth_scale);
+            __m256i pixels = _mm256_cvtps_epi32(mk);
+            unsigned char *dst = image + y * s->width * 3 + x * 3;
+            unsigned char *src = (unsigned char *)&pixels;
+            for (int i = 0; i < 8; i++) {
+                dst[i * 3 + 0] = src[i * 4];
+                dst[i * 3 + 1] = src[i * 4];
+                dst[i * 3 + 2] = src[i * 4];
+            }
+        }
+    }
+}
+
 
 void mandel_basic(unsigned char *image,  struct imgspec *s)
 {
@@ -40,12 +91,9 @@ void mandel_basic(unsigned char *image,  struct imgspec *s)
             image[y * s->width * 3 + x * 3 + 0] = pixel;
             image[y * s->width * 3 + x * 3 + 1] = pixel;
             image[y * s->width * 3 + x * 3 + 2] = pixel;
-            
-            
         }
     }
 }
-
 
 
 /* UTILS */
@@ -65,6 +113,17 @@ int average_time(int *arr, int size){
     return result;
 }
 
+#ifdef __x86_64__
+#include <cpuid.h>
+
+static inline int
+is_avx_supported(void)
+{
+    unsigned int eax = 0, ebx = 0, ecx = 0, edx = 0;
+    __get_cpuid(1, &eax, &ebx, &ecx, &edx);
+    return ecx & bit_AVX ? 1 : 0;
+}
+#endif
 
 /* run functions */
 int run_mandel_avx(struct imgspec *spec, int store_img){
@@ -137,6 +196,7 @@ void run_test(struct imgspec *spec, int size, int storeimg){
     
     spec->width = size;
     spec->height = size;
+    double pixels = size * size;
     
     /* AVX */
     int *arr_avx = (int*)malloc(TEST_LENGHT*sizeof(int));
@@ -164,9 +224,9 @@ void run_test(struct imgspec *spec, int size, int storeimg){
     
     /* Vypis statistiky */
     printf("\nPriemerny cas vykreslenia obrazku %d x %d pixelov:\n", size, size);
-    printf("    Basic: %dms\n", avg_basic_time);
-    printf("    SSE: %dms, zrychlenie %.2fx\n", avg_sse_time, ((float)avg_basic_time/(float)avg_sse_time));
-    printf("    AVX: %dms, zrychlenie %.2fx\n", avg_avx_time, ((float)avg_basic_time/(float)avg_avx_time));
+    printf("    Basic: %dms, Pixel/ms: %.2f\n", avg_basic_time, (pixels/avg_basic_time));
+    printf("    SSE: %dms, zrychlenie %.2fx, Pixel/ms: %.2f\n", avg_sse_time, ((float)avg_basic_time/(float)avg_sse_time), (pixels/avg_sse_time));
+    printf("    AVX: %dms, zrychlenie %.2fx, Pixel/ms: %.2f\n", avg_avx_time, ((float)avg_basic_time/(float)avg_avx_time), (pixels/avg_avx_time));
  
 }
 
@@ -261,12 +321,14 @@ int main(int argc, const char * argv[]) {
     
     
     /* AVX */
-    if(use_avx){
+    #ifdef __x86_64__
+    if(use_avx && is_avx_supported()){
         int time_avx = run_mandel_avx(&spec, store_img);
         printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
         printf("AVX cas: %d ms\n", time_avx);
         (store_img) ? printf("Ulozeny: %s\n",IMG_PATH_AVX) : printf("");
     }
+    #endif
     
     /* SSE */
     if(use_sse){
