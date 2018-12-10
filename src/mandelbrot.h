@@ -27,11 +27,11 @@ typedef struct imgspec {
 #define IMG_PATH_SSE "fractal_SSE.png"
 #define IMG_PATH_BASIC "fractal_Basic.png"
 
-#define TSIZE1 500
-#define TSIZE2 1000
-#define TSIZE3 2000
-#define TSIZE4 3000
-#define TSIZE5 4000
+#define TSIZE1 512
+#define TSIZE2 1024
+#define TSIZE3 2048
+#define TSIZE4 3072
+#define TSIZE5 4096
 
 #define DEPTH 256
 #define ITERATIONS 256
