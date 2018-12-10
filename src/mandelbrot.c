@@ -38,7 +38,7 @@ void mandel_basic(unsigned char *image,  struct imgspec *s)
                     break;
             }
             mk *= iter_scale;
-            //mk = sqrt(mk);
+            mk = sqrt(mk);
             mk *= depth_scale;
             int pixel = mk;
             image[y * s->width * 3 + x * 3 + 0] = pixel;
