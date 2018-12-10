@@ -200,7 +200,7 @@ int run_mandel_avx(struct imgspec *spec, int store_img){
         fwrite(image_avx, spec->width * spec->height, 3, fp_avx);
         fclose(fp_avx);
     }
-    free(image_avx)
+    free(image_avx);
     return time_avx;
 }
 
@@ -389,7 +389,7 @@ int main(int argc, const char * argv[]) {
         int time_avx = run_mandel_avx(&spec, store_img);
         printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
         printf("AVX cas: %d ms\n", time_avx);
-        (store_img) ? printf("Ulozeny: %s\n",IMG_PATH_AVX) : printf("");
+        (store_img) ? printf("Ulozeny: %s\n",IMG_PATH_AVX) : printf(" ");
     }
     #endif
     
@@ -398,7 +398,7 @@ int main(int argc, const char * argv[]) {
         int time_sse = run_mandel_sse(&spec, store_img);
         printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
         printf("SSE cas: %d ms\n", time_sse);
-        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_SSE) : printf("");
+        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_SSE) : printf(" ");
     }
     
     /* Basic */
@@ -406,7 +406,7 @@ int main(int argc, const char * argv[]) {
         int time_basic = run_mandel_basic(&spec, store_img);
         printf("Vykresleny obrazok %d x %d pixelov:\n", spec.width, spec.height);
         printf("Basic cas: %d ms\n", time_basic);
-        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_BASIC) : printf("");
+        (store_img) ? printf("Ulozeny: %s\n", IMG_PATH_BASIC) : printf(" ");
     }
     
     return 0;
