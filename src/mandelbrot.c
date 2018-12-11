@@ -38,7 +38,7 @@ void mandel_basic(unsigned char *image,  struct imgspec *s)
                     break;
             }
             mk *= iter_scale;
-            mk = sqrt(mk);
+            mk = sqrtf(mk);
             mk *= depth_scale;
             int pixel = mk;
             image[y * s->width * 3 + x * 3 + 0] = pixel;
@@ -363,19 +363,19 @@ int main(int argc, const char * argv[]) {
     /* TEST */
     if(test){
         printf("Nasledovne priemerne casy su vypocitane z %d pokusov vykreslenia obrazku...\n", TEST_LENGHT);
-        /* test 500 */
+        /* test 512 */
         run_test(&spec, TSIZE1, store_img);
         
-        /* test 1000 */
+        /* test 1024 */
         run_test(&spec, TSIZE2, store_img);
         
-        /* test 2000 */
+        /* test 2048 */
         run_test(&spec, TSIZE3, store_img);
         
-        /* test 3000 */
+        /* test 3079 */
         run_test(&spec, TSIZE4, store_img);
         
-        /* test 4000 */
+        /* test 4096 */
         run_test(&spec, TSIZE5, store_img);
         
         return 0;
