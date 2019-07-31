@@ -1,4 +1,4 @@
-# Mandelbrot 
+# Vykreslenie Mandelbrotovho fraktálu pomocou SSE a AVX 
 Program vykresľuje Mandelbrotov fraktál s použitím špeciálnych inštrukcii procesora SSE a AVX pre značné zvýšenie rýchlosti vykresľovania. Používateľ si môže vybrať spôsob vykreslenia obrázku - použitie špeciálnych inštrukcii a tiež aj veľkosť obrázku, ktorý sa vykreslí. Okrem toho je možné spustiť testovanie, ktoré zmeria rýchlosť pri vykreslovaní rôznych veľkostí obrázkov za použitia špeciálnych inštrukcií a bez nich.
 
 ![Alt text](images/mandelbrot.png?raw=true "Mandelbrotov fraktál")

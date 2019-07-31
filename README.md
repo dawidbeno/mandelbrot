@@ -1,4 +1,4 @@
-# Mandelbrot 
+# Rendering Mandelbrot fractal with SEE and AVX
 
 [Slovak](README.sk.md) version
 
