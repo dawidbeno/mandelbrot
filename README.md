@@ -2,40 +2,40 @@
 
 [Slovak](https://github.com/dawidbeno/mandelbrot/blob/master/README.sk.md) version
 
-Program vykresľuje Mandelbrotov fraktál s použitím špeciálnych inštrukcii procesora SSE a AVX pre značné zvýšenie rýchlosti vykresľovania. Používateľ si môže vybrať spôsob vykreslenia obrázku - použitie špeciálnych inštrukcii a tiež aj veľkosť obrázku, ktorý sa vykreslí. Okrem toho je možné spustiť testovanie, ktoré zmeria rýchlosť pri vykreslovaní rôznych veľkostí obrázkov za použitia špeciálnych inštrukcií a bez nich.
+Application renders Mandelbrot fractar using special processor extensions SSE and AVX to greatly increase rendering speed. User can how to render the image - using special extension as well as size of rendered image. There is also option to launch test to measure redndering speed of images with different sizes and with use of extensions and without them.
 
 ## Installation
-Program nevyžaduje žiadnu špeciálnu inštaláciu, iba stiahnutie kódov a ich skompilovanie príkazom:
+Application does not require any special installation. Only to download codes and compile with command:
 ```
 make
 ```
-alebo príkazom:
+or command:
 ```
 gcc -Wall -Wextra -O3 -msse2 -mavx mandel.c mandel_sse2.c mandel_avx.c -o mandelEXE
 ```
 
-## Run
-Program s spúšťa pomoocu Bash skriptu:
+## Launch
+App launches with Bash script:
 ```
 ./mandel [-h] [-B] [-S] [-A] [-t] [-w] [-xy num num] [-c]
 ```
 ### Options
 - **-h** 
-	* Program vypíše help.
+	* Shows help.
 - **-B**
-	* Vykreslenie obrázku bez použitia inštrukcií (Basic).
+	* Renders image without using special extensions (Basic state).
 - **-S**
-	* Vykreslenie obrázku s použitím SSE inštrukcií.
+	* Redners image with SEE extension.
 - **-A**
-	* Vykreslenie obrázku s použitám AVX inštrukcií.
+	* Renders image with AVX extension.
 - **-t**
-	* Vykoná testovanie, ktoré vypíše priemerný čas vykreslenia obrázkov bez použitia špeciálnych inštrukcii, s SSE a s AVX. Priemerný čas sa vypočíta z časov 10 vykreslení obrázka pre každý typ programu. Testovaie sa vykonáva pre viacero veľkostí obrázkov (N x N) so stranou 500, 1000, 2000, 3000 a 4000 pixelov."
+	* Performs a test, which shows average rendering time of images without using special extensions, with SSE and with AVX. Image is rendered 10 times for each type and then average time is calculated. Testing is performed for multiple sizes of image (N x N) with side of 500, 1000, 2000, 3000 and 4000 pixels.
 - **-w**
-	* Uloží obrázok do priečinku s programom. Názov obrázku je fractal_[Basic / SSE / AVX].png. Ak je prepínac použitý v kombinacii s -T, tak uloží len posledný (a teda najväčší) obrázok z testovania."
+	* Saves the image in the application folder. Name of image is fractal_[Basic / SSE / AVX].png. If this option is used in combination -t option, only last (the biggest one) image from test will be stored.
 - **-xy num num**
-	* Šírka a výška obrázku, ktorý sa vykreslí. Za prepínačom **-xy** musia nasledovať dve čísla oddelené medzerou.
+	* The width and height of the image to be rendered. The **-xy** switch have to be followed by two numbers separated by space.
 - -c
-	* Vyčistí priečinok - vymazanie vykreslených obrázkov a všetkých skompilovaných súborov.
+	* Cleans the application folder - deletes all rendered images and compiled files.
 
 ## Xcode project
 Directory **xcode_mandel_aps** contains Xcode project for Macos system.
