@@ -42,6 +42,6 @@ App launches with Bash script:
 ## Xcode project
 Directory **xcode_mandel_aps** contains Xcode project for Macos system.
 
-## End
-This project was created as semestral work in FIIT STU within subject Computer architecture
+## License
+This project was created as semestral work in FIIT STU within subject Computer architecture. December 2018.
 

@@ -40,5 +40,5 @@ Program s spúšťa pomoocu Bash skriptu:
 V priečinku **xcode_mandel_aps** je umiestnený projekt pre prostredie Xcode na macos.
 
 ## Záver
-Tento projekt bol vytvorený ako školský projekt na FIIT STU v rámci predmetu Architektúra počítačových systémov.
+Tento projekt bol vytvorený ako školský projekt na FIIT STU v rámci predmetu Architektúra počítačových systémov. December 2018.
 
