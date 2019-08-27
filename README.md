@@ -10,9 +10,11 @@ Application renders Mandelbrot fractar using special processor extensions SSE an
 The Flynn classification is probably the best known classification of parallel systems, created in 1966. Systems are split
 from two points of view - instruction flow and data flow. This classification includes four main types of parallel systems:
 
-| | Single Instruction | Multiple Instruction |
-| Single Data | SISD | MISD |
-| Multiple Data | SIMD | MIMD |
+
+|                 | Single Instruction | Multiple Instruction |
+| --------------- | ------------------ | -------------------- |
+|   Single Data   |        SISD        |        MISD          |
+|  Multiple Data  |        SIMD        |        MIMD          |
 
 
 
