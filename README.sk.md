@@ -3,6 +3,22 @@ Program vykresľuje Mandelbrotov fraktál s použitím špeciálnych inštrukcii
 
 ![Alt text](images/mandelbrot.png?raw=true "Mandelbrotov fraktál")
 
+### SIMD
+Flynnová klasifikácia je zrejme najznámejšia klasifikácia paralelných systémov, vznikla v roku 1966. Systémy sú delené z dvoch hľadísk – toku inštrukcií a toku dát. Táto klasifikácia obsahuje štyri hlavné typy paralelných systémov:
+
+
+|                     | Single Instruction | Multiple Instruction |
+| ------------------- | ------------------ | -------------------- |
+|   **Single Data**   |        SISD        |        MISD          |
+|  **Multiple Data**  |        SIMD        |        MIMD          |
+
+Práve myšlienka SIMD a teda vykonávanie jednej inštrukcie nad viacerými tokmi dát bola námetom pre vznik viacero procesorových architektúr alebo rozšírení, ktoré by toto zabezpečili.
+
+Jedným zo spôsobov ako dosiahnuť SIMD funkcionalitu procesoru je použitie špeciálnych veľkých registrov. Tieto registre môžu v sebe držať vektor dát, ktorého veľkosť závisí od veľkosti registra a môže sa vykonávať výpočet medzi viacerými takýmito registrami.
+
+![Alt text](images/simd_registers.png?raw=true "SIMD")
+
+
 ## Inštalácia
 Program nevyžaduje žiadnu špeciálnu inštaláciu, iba stiahnutie kódov a ich skompilovanie príkazom:
 ```
