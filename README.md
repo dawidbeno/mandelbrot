@@ -20,7 +20,7 @@ It was the idea of SIMD, and thus the execution of a single instruction over mul
 
 One way to achieve SIMD processor functionality is to use special large registers. These registers may hold within them a vector of data the size of which depends on the size of the register and a calculation may be performed between several such registers.
 
-![Alt text](images/simd_registers.png?raw=true "SIMD")
+![Alt text](images/simd_registers.png "SIMD")
 
 ## Installation
 Application does not require any special installation. Only to download codes and compile with command:
