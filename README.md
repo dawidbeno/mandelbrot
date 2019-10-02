@@ -2,7 +2,7 @@
 
 [Slovak](README.sk.md) version
 
-Application renders Mandelbrot fractar using special processor extensions SSE and AVX to greatly increase rendering speed. User can how to render the image - using special extension as well as size of rendered image. There is also option to launch test to measure redndering speed of images with different sizes and with use of extensions and without them.
+Application renders Mandelbrot fractar using special processor extensions SSE and AVX to greatly increase rendering speed. User can choose how to render the image - using special extension as well as size of rendered image. There is also option to launch test to measure redndering speed of images with different sizes and with use of extensions and without them.
 
 ![Alt text](images/mandelbrot.png?raw=true "Mandelbrot fractal")
 
